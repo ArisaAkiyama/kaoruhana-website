@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "title": "Website E-Commerce",
+    "description": "Website toko online modern dengan fitur keranjang belanja, pembayaran, dan dashboard admin.",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    "category": "Web Development",
+    "tags": [
+      "Vue.js",
+      "Node.js",
+      "MongoDB"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Aplikasi Absensi",
+    "description": "Sistem absensi pegawai berbasis QR Code dengan laporan realtime dan notifikasi.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    "category": "Mobile App",
+    "tags": [
+      "React Native",
+      "Firebase"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Game Edukasi",
+    "description": "Game pembelajaran matematika interaktif untuk anak SD dengan animasi menarik.",
+    "image": "https://images.unsplash.com/photo-1553481187-be93c21490a9?w=600&h=400&fit=crop",
+    "category": "Game Design",
+    "tags": [
+      "Unity",
+      "C#",
+      "Animation"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Dashboard Analytics",
+    "description": "Dashboard visualisasi data dengan grafik interaktif dan laporan otomatis.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    "category": "Web Development",
+    "tags": [
+      "Vue.js",
+      "D3.js",
+      "API"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Company Profile",
+    "description": "Website profil perusahaan dengan animasi scroll yang smooth dan desain premium.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    "category": "Web Design",
+    "tags": [
+      "GSAP",
+      "CSS",
+      "Animation"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Portfolio Artist",
+    "description": "Website portfolio untuk seniman digital dengan galeri karya yang interaktif.",
+    "image": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
+    "category": "Web Design",
+    "tags": [
+      "Vue.js",
+      "GSAP",
+      "Responsive"
+    ]
+  }
+]
