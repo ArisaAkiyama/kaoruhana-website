@@ -2,6 +2,23 @@
 
 Anime promotional website for "The Fragrant Flower Blooms with Dignity" (薫る花は凛と咲く).
 
+## 📸 Screenshots
+
+### Hero Section
+![Hero](screenshots/hero.png)
+
+### Movie Section
+![Movie](screenshots/movie.png)
+
+### Character Section
+![Character](screenshots/character.png)
+
+### News Section
+![News](screenshots/news.png)
+
+### Gallery Section
+![Gallery](screenshots/gallery.png)
+
 ## 🌸 Features
 
 - **Hero Slider** - Ken Burns effect with animated logo
