@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Import assets
 import thumb1 from '../assets/chara_thumb_1.png';
@@ -28,6 +31,10 @@ import bgBase from '../assets/bg_base.jpg';
 import charaBgL from '../assets/chara_bg_L.png';
 import charaBgR from '../assets/chara_bg_R.png';
 import charaNameBg from '../assets/chara_name_bg.png';
+
+// Refs for scroll animation
+const thumbRowRef = ref(null);
+const mainCardRef = ref(null);
 
 // Character data
 const characters = ref([
@@ -233,38 +240,59 @@ const selectChar = (idx) => {
     }
   });
 
-  // Info header STAMP animation
+  // Info header STAMP animation (slower)
   gsap.fromTo(infoHeaderRef.value, 
     { opacity: 0, scale: 1.5, rotation: -5 },
-    { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)", delay: 0.15 }
+    { opacity: 1, scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.5)", delay: 0.2 }
   );
 };
 
+// Click zoom animation on character image
+const onCharaClick = () => {
+  gsap.timeline()
+    .to(mainImgRef.value, {
+      scale: 1.15,
+      duration: 0.2,
+      ease: "power2.out"
+    })
+    .to(mainImgRef.value, {
+      scale: 1,
+      duration: 0.3,
+      ease: "elastic.out(1, 0.5)"
+    });
+};
+
 onMounted(() => {
-  // Thumbnail animation - ensure opacity ends at 1
-  gsap.fromTo('.thumb-icon', 
-    { opacity: 0, y: -15 },
-    { 
-      opacity: 1, 
-      y: 0, 
-      stagger: 0.08, 
-      duration: 0.4, 
-      ease: "power2.out",
-      clearProps: "all" // Clear inline styles after animation
-    }
-  );
+  // Set initial state
+  gsap.set('.thumb-icon', { opacity: 0, y: -20 });
+  gsap.set('.main-card', { opacity: 0, y: 50 });
   
-  gsap.fromTo('.main-card', 
-    { opacity: 0, y: 30 },
-    { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.6, 
-      delay: 0.3, 
-      ease: "power3.out",
-      clearProps: "all"
+  // Thumbnail animation with ScrollTrigger
+  gsap.to('.thumb-icon', {
+    opacity: 1,
+    y: 0,
+    stagger: 0.1,
+    duration: 0.5,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: '.thumb-row',
+      start: 'top 80%',
+      toggleActions: 'play none none none'
     }
-  );
+  });
+  
+  // Main card animation with ScrollTrigger
+  gsap.to('.main-card', {
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: '.main-card',
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    }
+  });
 });
 </script>
 
@@ -298,7 +326,7 @@ onMounted(() => {
       <!-- Character Visual Section -->
       <div class="card-visual">
         <!-- Left: Character Image -->
-        <div class="card-chara">
+        <div class="card-chara" @click="onCharaClick">
           <img ref="mainImgRef" :src="activeChar.main" :alt="activeChar.name" class="chara-img" />
         </div>
 
@@ -420,12 +448,18 @@ onMounted(() => {
 .thumb-icon {
   width: 55px;
   height: 55px;
+  min-width: 55px;
+  min-height: 55px;
+  max-width: 55px;
+  max-height: 55px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
   border: 3px solid #e0d8e8;
   transition: all 0.25s ease;
   background: white;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .thumb-icon img {
@@ -435,13 +469,12 @@ onMounted(() => {
 }
 
 .thumb-icon:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   border-color: #c8b8d8;
 }
 
 .thumb-icon.active {
   border-color: #9080a8;
-  transform: scale(1.15);
   box-shadow: 0 4px 15px rgba(140, 120, 170, 0.4);
 }
 

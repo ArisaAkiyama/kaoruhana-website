@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-12-31
+
+### Added
+- **Story Section** - New section featuring:
+  - Episode tabs for all 13 episodes
+  - Animated filmstrip displaying episode screenshots
+  - YouTube video player integration for each episode
+  - Episode preview card with rotating play button (matching Movie Section design)
+  - Synopsis and staff information display
+- **Episode Images** - Added image folders (id_1 through id_13) with screenshots for each episode
+
+### Changed
+- Episode preview card now uses Movie Section design with:
+  - Larger card (600px, 16:9 aspect ratio)
+  - Hover effects with shadow and lift animation
+  - Play icon with rotating dashed circle
+
 ## [1.0.0] - 2025-12-29
 
 ### Added

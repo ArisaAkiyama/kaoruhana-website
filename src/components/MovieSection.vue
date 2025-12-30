@@ -162,13 +162,6 @@ onMounted(() => {
         </button>
       </div>
 
-      <!-- Slide Counter -->
-      <div class="slide-counter">
-        <span class="current">{{ String(currentIndex + 1).padStart(2, '0') }}</span>
-        <span class="separator">/</span>
-        <span class="total">{{ String(movies.length).padStart(2, '0') }}</span>
-      </div>
-
       <!-- Dots -->
       <div class="slider-dots">
         <button 
@@ -298,32 +291,6 @@ onMounted(() => {
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(-30px);
-}
-
-/* Slide Counter */
-.slide-counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 30px;
-  font-family: inherit;
-}
-
-.slide-counter .current {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #9080a8;
-}
-
-.slide-counter .separator {
-  font-size: 1rem;
-  color: #ccc;
-}
-
-.slide-counter .total {
-  font-size: 1rem;
-  color: #999;
 }
 
 .slide-inner {

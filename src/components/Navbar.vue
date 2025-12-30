@@ -1,19 +1,34 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import logoMain from '../assets/logo_main.png';
+import bgmAudio from '../assets/汐れいら _ ハレの日に【Official Music Video】TVアニメ『薫る花は凛と咲く』ver. - 汐れいら.mp3';
 
 const activeSection = ref('');
 const isVisible = ref(true);
 const isHovering = ref(false);
+const isAudioPlaying = ref(false);
+const audioRef = ref(null);
 let scrollTimeout = null;
 let lastScrollY = 0;
 
 const navLinks = [
   { id: 'movie', label: 'MOVIE' },
   { id: 'character', label: 'CHARACTER' },
+  { id: 'story', label: 'STORY' },
   { id: 'news', label: 'NEWS' },
   { id: 'gallery', label: 'GALLERY' }
 ];
+
+const toggleAudio = () => {
+  if (audioRef.value) {
+    if (isAudioPlaying.value) {
+      audioRef.value.pause();
+    } else {
+      audioRef.value.play();
+    }
+    isAudioPlaying.value = !isAudioPlaying.value;
+  }
+};
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
@@ -98,21 +113,36 @@ onUnmounted(() => {
       <div class="nav-logo" @click="scrollToTop">
         <img :src="logoMain" alt="薫る花は凛と咲く" class="logo-img" />
       </div>
-      <div class="nav-links">
-        <a 
-          v-for="link in navLinks" 
-          :key="link.id"
-          href="#"
-          class="nav-link"
-          :class="{ active: activeSection === link.id }"
-          @click.prevent="scrollToSection(link.id)"
-          @mouseenter="(e) => e.target.style.color = Math.random() > 0.5 ? '#4ecdc4' : '#9080a8'"
-          @mouseleave="(e) => e.target.style.color = ''"
-        >
-          {{ link.label }}
-        </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a 
+            v-for="link in navLinks" 
+            :key="link.id"
+            href="#"
+            class="nav-link"
+            :class="{ active: activeSection === link.id }"
+            @click.prevent="scrollToSection(link.id)"
+            @mouseenter="(e) => e.target.style.color = Math.random() > 0.5 ? '#4ecdc4' : '#9080a8'"
+            @mouseleave="(e) => e.target.style.color = ''"
+          >
+            {{ link.label }}
+          </a>
+        </div>
+        
+        <!-- Audio Toggle -->
+        <button class="audio-btn" @click="toggleAudio" :class="{ active: isAudioPlaying }">
+          <div class="audio-icon">
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+            <span class="bar bar4"></span>
+          </div>
+        </button>
       </div>
     </div>
+    
+    <!-- Hidden Audio Element -->
+    <audio ref="audioRef" :src="bgmAudio" loop></audio>
   </nav>
 </template>
 
@@ -154,6 +184,12 @@ onUnmounted(() => {
 
 .nav-logo:hover .logo-img {
   opacity: 0.7;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-links {
@@ -223,5 +259,85 @@ onUnmounted(() => {
   .logo-img {
     height: 22px;
   }
+}
+
+/* Audio Button */
+.audio-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.audio-icon {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 16px;
+}
+
+.audio-icon .bar {
+  width: 3px;
+  background: #9080a8;
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+/* Inactive state - flat bars */
+.audio-btn:not(.active) .bar {
+  height: 4px;
+}
+
+/* Active state - animated bars */
+.audio-btn.active .bar1 {
+  height: 8px;
+  animation: soundBar1 0.5s ease-in-out infinite alternate;
+}
+
+.audio-btn.active .bar2 {
+  height: 16px;
+  animation: soundBar2 0.5s ease-in-out infinite alternate;
+  animation-delay: 0.1s;
+}
+
+.audio-btn.active .bar3 {
+  height: 12px;
+  animation: soundBar3 0.5s ease-in-out infinite alternate;
+  animation-delay: 0.2s;
+}
+
+.audio-btn.active .bar4 {
+  height: 18px;
+  animation: soundBar4 0.5s ease-in-out infinite alternate;
+  animation-delay: 0.15s;
+}
+
+@keyframes soundBar1 {
+  0% { height: 8px; }
+  100% { height: 16px; }
+}
+
+@keyframes soundBar2 {
+  0% { height: 16px; }
+  100% { height: 6px; }
+}
+
+@keyframes soundBar3 {
+  0% { height: 12px; }
+  100% { height: 20px; }
+}
+
+@keyframes soundBar4 {
+  0% { height: 18px; }
+  100% { height: 10px; }
+}
+
+.audio-btn:hover .bar {
+  background: #4ecdc4;
 }
 </style>

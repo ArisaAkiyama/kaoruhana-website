@@ -2,6 +2,7 @@
 import HeroSlider from '../components/HeroSlider.vue';
 import MovieSection from '../components/MovieSection.vue';
 import CharacterCarousel from '../components/CharacterCarousel.vue';
+import StorySection from '../components/StorySection.vue';
 import NewsSection from '../components/NewsSection.vue';
 import GallerySection from '../components/GallerySection.vue';
 import Footer from '../components/Footer.vue';
@@ -12,6 +13,7 @@ import Footer from '../components/Footer.vue';
     <HeroSlider />
     <MovieSection />
     <CharacterCarousel />
+    <StorySection />
     <NewsSection />
     <GallerySection />
     <Footer />

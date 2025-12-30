@@ -22,6 +22,7 @@ Anime promotional website for "The Fragrant Flower Blooms with Dignity" (薫る�
 ## 🌸 Features
 
 - **Hero Slider** - Ken Burns effect with animated logo
+- **Story Section** - Episode filmstrip with YouTube video player for all 13 episodes
 - **Movie Section** - YouTube trailer player with rotating play button
 - **Character Carousel** - Interactive character showcase with expressions
 - **News Section** - Latest anime news and updates
@@ -72,7 +73,8 @@ src/
 │   ├── MovieSection.vue
 │   ├── Navbar.vue
 │   ├── NewsSection.vue
-│   └── StarAnimation.vue
+│   ├── StarAnimation.vue
+│   └── StorySection.vue
 ├── views/           # Page views
 ├── router/          # Vue Router configuration
 └── App.vue          # Main app component
