@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "optimize": "node optimize-images.js",
+    "cache-thumbnails": "node cache-thumbnails.js"
   },
   "dependencies": {
     "gsap": "^3.14.2",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
+    "sharp": "^0.34.5",
     "vite": "^7.2.4"
   }
 }

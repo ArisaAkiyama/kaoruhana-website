@@ -8,6 +8,7 @@ const isVisible = ref(true);
 const isHovering = ref(false);
 const isAudioPlaying = ref(false);
 const audioRef = ref(null);
+const isMobileMenuOpen = ref(false);
 let scrollTimeout = null;
 let lastScrollY = 0;
 
@@ -16,6 +17,7 @@ const navLinks = [
   { id: 'character', label: 'CHARACTER' },
   { id: 'story', label: 'STORY' },
   { id: 'news', label: 'NEWS' },
+  { id: 'staff', label: 'STAFF' },
   { id: 'gallery', label: 'GALLERY' }
 ];
 
@@ -35,6 +37,14 @@ const scrollToSection = (sectionId) => {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   }
+  // Close mobile menu after clicking
+  isMobileMenuOpen.value = false;
+  // Reset hovering state so navbar can auto-hide
+  isHovering.value = false;
+};
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
 const scrollToTop = () => {
@@ -113,22 +123,9 @@ onUnmounted(() => {
       <div class="nav-logo" @click="scrollToTop">
         <img :src="logoMain" alt="薫る花は凛と咲く" class="logo-img" />
       </div>
-      <div class="nav-right">
-        <div class="nav-links">
-          <a 
-            v-for="link in navLinks" 
-            :key="link.id"
-            href="#"
-            class="nav-link"
-            :class="{ active: activeSection === link.id }"
-            @click.prevent="scrollToSection(link.id)"
-            @mouseenter="(e) => e.target.style.color = Math.random() > 0.5 ? '#4ecdc4' : '#9080a8'"
-            @mouseleave="(e) => e.target.style.color = ''"
-          >
-            {{ link.label }}
-          </a>
-        </div>
-        
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-right desktop-nav">
         <!-- Audio Toggle -->
         <button class="audio-btn" @click="toggleAudio" :class="{ active: isAudioPlaying }">
           <div class="audio-icon">
@@ -138,8 +135,55 @@ onUnmounted(() => {
             <span class="bar bar4"></span>
           </div>
         </button>
+        
+        <!-- Desktop Hamburger Button -->
+        <button class="hamburger-btn desktop-hamburger" :class="{ active: isMobileMenuOpen }" @click="toggleMobileMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Controls -->
+      <div class="mobile-nav-controls">
+        <!-- Audio Toggle (Mobile) -->
+        <button class="audio-btn" @click="toggleAudio" :class="{ active: isAudioPlaying }">
+          <div class="audio-icon">
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+            <span class="bar bar4"></span>
+          </div>
+        </button>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger-btn" :class="{ active: isMobileMenuOpen }" @click="toggleMobileMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
       </div>
     </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <transition name="mobile-menu">
+      <div v-if="isMobileMenuOpen" class="mobile-menu-overlay" @click.self="toggleMobileMenu">
+        <div class="mobile-menu">
+          <a 
+            v-for="(link, index) in navLinks" 
+            :key="link.id"
+            href="#"
+            class="mobile-nav-link"
+            :class="{ active: activeSection === link.id }"
+            :style="{ animationDelay: `${index * 0.1}s` }"
+            @click.prevent="scrollToSection(link.id)"
+          >
+            <span class="link-number">0{{ index + 1 }}</span>
+            <span class="link-text">{{ link.label }}</span>
+          </a>
+        </div>
+      </div>
+    </transition>
     
     <!-- Hidden Audio Element -->
     <audio ref="audioRef" :src="bgmAudio" loop></audio>
@@ -228,6 +272,130 @@ onUnmounted(() => {
 }
 
 /* Responsive */
+/* Mobile Navigation Controls - Hidden on desktop */
+.mobile-nav-controls {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  gap: 5px;
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 2px;
+  background: #9080a8;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger Animation - X shape when active */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  animation: slideInUp 0.5s ease forwards;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  color: #c8a8d8;
+  transform: translateX(10px);
+}
+
+.mobile-nav-link.active {
+  color: #c8a8d8;
+}
+
+.link-number {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.link-text {
+  font-weight: 500;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Menu Transition */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+}
+
+/* Responsive - Show hamburger on mobile */
 @media (max-width: 768px) {
   .navbar {
     padding: 8px 15px;
@@ -237,27 +405,32 @@ onUnmounted(() => {
     height: 25px;
   }
 
-  .nav-links {
-    gap: 12px;
+  /* Hide desktop nav, show mobile controls */
+  .desktop-nav {
+    display: none;
   }
 
-  .nav-link {
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
+  .mobile-nav-controls {
+    display: flex;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    gap: 8px;
-  }
-
-  .nav-link {
-    font-size: 0.55rem;
-  }
-
   .logo-img {
     height: 22px;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.2rem;
+  }
+
+  .hamburger-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hamburger-line {
+    width: 20px;
   }
 }
 
@@ -272,6 +445,10 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.mobile-nav-controls .audio-btn {
+  margin-left: 0;
 }
 
 .audio-icon {

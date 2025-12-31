@@ -4,6 +4,7 @@ import MovieSection from '../components/MovieSection.vue';
 import CharacterCarousel from '../components/CharacterCarousel.vue';
 import StorySection from '../components/StorySection.vue';
 import NewsSection from '../components/NewsSection.vue';
+import StaffSection from '../components/StaffSection.vue';
 import GallerySection from '../components/GallerySection.vue';
 import Footer from '../components/Footer.vue';
 </script>
@@ -15,6 +16,7 @@ import Footer from '../components/Footer.vue';
     <CharacterCarousel />
     <StorySection />
     <NewsSection />
+    <StaffSection />
     <GallerySection />
     <Footer />
   </div>
@@ -25,3 +27,4 @@ import Footer from '../components/Footer.vue';
   width: 100%;
 }
 </style>
+

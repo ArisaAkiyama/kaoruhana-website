@@ -40,11 +40,33 @@ const mainCardRef = ref(null);
 const characters = ref([
   {
     id: 1,
+    name: '紬 凛太郎',
+    nameEn: 'Rintaro Tsumugi',
+    cv: '中山祥徳',
+    cvEn: 'Yoshinori Nakayama',
+    description: '長身・金髪・強面・物静か。そんな見た目から周囲に「不良」「怖い人」と言われている。実家はケーキ屋で、たまに手伝いをしている。',
+    birthday: '1/28',
+    height: '190cm',
+    bloodType: 'A',
+    zodiac: '水瓶',
+    favorite: '和食、いちご',
+    hobby: '料理、CD集め',
+    qa1_q: '大切にしているものは？',
+    qa1_a: '兄ちゃんが入学祝いに買ってくれた靴',
+    qa2_q: '最近の悩みは？',
+    qa2_a: '宇佐美が授業中に後ろ向くたび変顔して笑わせてくること',
+    thumb: thumb1,
+    main: main1,
+    sub: sub1,
+    color: '#d4a5c9'
+  },
+  {
+    id: 2,
     name: '和栗 薫子',
     nameEn: 'Kaoruko Waguri',
     cv: '井上ほの花',
     cvEn: 'Honoka Inoue',
-    description: '食べることが大好きで、月に1〜2回程度、春太郎の実家のケーキ屋を利用している。何事にもまっすぐな性格。',
+    description: '食べることが大好きで、月に１～2回程度、凛太郎の実家のケーキ屋を利用している。何事にもまっすぐな性格。',
     birthday: '7/22',
     height: '148cm',
     bloodType: 'B',
@@ -55,28 +77,6 @@ const characters = ref([
     qa1_a: 'お洋服買いに行ったりします！何も用事がないときは勉強してます',
     qa2_q: '何してる時が一番幸せ？',
     qa2_a: 'ごはんを食べてる時と、たまにするお昼寝！',
-    thumb: thumb1,
-    main: main1,
-    sub: sub1,
-    color: '#d4a5c9'
-  },
-  {
-    id: 2,
-    name: '桜井 凛',
-    nameEn: 'Rin Sakurai',
-    cv: '早見沙織',
-    cvEn: 'Saori Hayami',
-    description: 'クールで無口だが、実は優しい心の持ち主。ピアノが得意で、音楽室でよく練習している。',
-    birthday: '3/3',
-    height: '162cm',
-    bloodType: 'A',
-    zodiac: '魚',
-    favorite: '紅茶、チョコレート',
-    hobby: 'ピアノ、読書',
-    qa1_q: '休日の過ごし方は？',
-    qa1_a: 'ピアノの練習をしています。たまに美術館にも行きます。',
-    qa2_q: '何してる時が一番幸せ？',
-    qa2_a: '静かな場所で本を読んでいる時です。',
     thumb: thumb2,
     main: main2,
     sub: sub2,
@@ -84,21 +84,21 @@ const characters = ref([
   },
   {
     id: 3,
-    name: '天野 美咲',
-    nameEn: 'Misaki Amano',
-    cv: '水瀬いのり',
-    cvEn: 'Inori Minase',
-    description: '純粋で素直な後輩。先輩に憧れており、いつも一生懸命ついていく。お菓子作りが趣味。',
-    birthday: '12/24',
-    height: '152cm',
-    bloodType: 'O',
-    zodiac: '山羊',
-    favorite: 'プリン、いちご',
-    hobby: 'お菓子作り、アニメ',
-    qa1_q: '休日の過ごし方は？',
-    qa1_a: 'お菓子を作ったり、友達と遊んだりしています！',
-    qa2_q: '何してる時が一番幸せ？',
-    qa2_a: '先輩と一緒にいる時です！',
+    name: '宇佐美 翔平',
+    nameEn: 'Shohei Usami',
+    cv: '戸谷菊之介',
+    cvEn: 'Kikunosuke Toya',
+    description: '凛太郎のクラスメイトで友人。成績は悪いが、いつも明るいムードメーカー。隠し事が苦手で、気になることや思ったことはすぐ口に出してしまう。',
+    birthday: '5/27',
+    height: '173cm',
+    bloodType: 'B',
+    zodiac: '双子',
+    favorite: 'ラーメン！からあげ！ハンバーグ！オムライス！',
+    hobby: 'スニーカー集め',
+    qa1_q: '得意なことは？',
+    qa1_a: 'なんかのイラストかくこと！小さいころから妹と弟によくかいてやってた！',
+    qa2_q: '',
+    qa2_a: '',
     thumb: thumb3,
     main: main3,
     sub: sub3,
@@ -106,21 +106,21 @@ const characters = ref([
   },
   {
     id: 4,
-    name: '高橋 雪',
-    nameEn: 'Yuki Takahashi',
-    cv: '悠木碧',
-    cvEn: 'Aoi Yuki',
-    description: '厳格な生徒会長だが、実は可愛いものが大好き。学校の秩序を守るため日々奔走している。',
-    birthday: '1/8',
-    height: '165cm',
-    bloodType: 'AB',
-    zodiac: '山羊',
-    favorite: 'ぬいぐるみ、抹茶',
-    hobby: 'ぬいぐるみ収集',
-    qa1_q: '休日の過ごし方は？',
-    qa1_a: '生徒会の仕事をしています...たまにぬいぐるみを見に行きます。',
-    qa2_q: '何してる時が一番幸せ？',
-    qa2_a: '...秘密です。',
+    name: '夏沢 朔',
+    nameEn: 'Saku Natsuzawa',
+    cv: '内山昂輝',
+    cvEn: 'Koki Uchiyama',
+    description: '凛太郎のクラスメイトで友人。普段はクールだが、実はとても友達想い。成績優秀で、定期試験前には凛太郎たちに勉強を教えている。',
+    birthday: '8/21',
+    height: '176cm',
+    bloodType: 'A',
+    zodiac: '獅子',
+    favorite: 'ドーナツ、あんみつ',
+    hobby: '洋楽漁ること、動物映画観賞',
+    qa1_q: '最近つらいことは？',
+    qa1_a: '姉と妹の買い物に付き合わされて、荷物持ちさせられること',
+    qa2_q: '1日で1番好きな時間は？',
+    qa2_a: '湯舟に浸かってぼーっとする時間',
     thumb: thumb4,
     main: main4,
     sub: sub4,
@@ -128,21 +128,21 @@ const characters = ref([
   },
   {
     id: 5,
-    name: '森 葵',
-    nameEn: 'Aoi Mori',
-    cv: '上坂すみれ',
-    cvEn: 'Sumire Uesaka',
-    description: '物静かで本が大好きな図書委員。控えめだが、好きなことには熱中する一面も。',
-    birthday: '9/22',
-    height: '155cm',
-    bloodType: 'A',
-    zodiac: '乙女',
-    favorite: '緑茶、和菓子',
-    hobby: '読書、天体観測',
-    qa1_q: '休日の過ごし方は？',
-    qa1_a: '図書館で本を読んでいます...夜は星を見ます。',
-    qa2_q: '何してる時が一番幸せ？',
-    qa2_a: '好きな本の世界に入り込んでいる時...',
+    name: '依田 絢斗',
+    nameEn: 'Ayato Yoda',
+    cv: '石橋陽彩',
+    cvEn: 'Hisai Ishibashi',
+    description: '凛太郎のクラスメイトで友人。周りをよく見ていて、翔平たちをなだめることが多い。実は怒らせると一番怖い…⁉',
+    birthday: '3/16',
+    height: '163cm',
+    bloodType: 'O',
+    zodiac: 'うお',
+    favorite: 'すっぱいもの',
+    hobby: 'スノーボード',
+    qa1_q: 'マイブームは？',
+    qa1_a: '凛太郎たちを隠し撮りすること！',
+    qa2_q: '子供の頃の夢は？',
+    qa2_a: '恐竜を飼う！',
     thumb: thumb5,
     main: main5,
     sub: sub5,
@@ -150,21 +150,21 @@ const characters = ref([
   },
   {
     id: 6,
-    name: '白石 月',
-    nameEn: 'Tsuki Shiraishi',
-    cv: '佐倉綾音',
-    cvEn: 'Ayane Sakura',
-    description: 'ミステリアスな雰囲気の転校生。何か秘密を抱えているようだが、その正体は誰も知らない。',
-    birthday: '10/31',
-    height: '160cm',
-    bloodType: '?',
+    name: '保科 昴',
+    nameEn: 'Subaru Hoshina',
+    cv: '山根 綺',
+    cvEn: 'Aya Yamane',
+    description: '桔梗学園女子高等学校2年A組。薫子の幼馴染でありクラスメイト。小さいときから一緒にいる薫子をとても大切にしている。',
+    birthday: '11/19',
+    height: '172cm',
+    bloodType: 'A',
     zodiac: '蠍',
-    favorite: '秘密',
-    hobby: '秘密',
-    qa1_q: '休日の過ごし方は？',
-    qa1_a: 'ふふ...知りたい？',
-    qa2_q: '何してる時が一番幸せ？',
-    qa2_a: 'それは秘密よ。',
+    favorite: 'コーヒー、お煎餅',
+    hobby: 'コーヒー、専門店巡り',
+    qa1_q: 'こだわりは何？',
+    qa1_a: '朝起きる時には必ずアラーム1回で起きる',
+    qa2_q: '1つだけ秘密を教えて！',
+    qa2_a: '薫子が着るような可愛い服を着てみたい',
     thumb: thumb6,
     main: main6,
     sub: sub6,
@@ -201,8 +201,29 @@ const onCharaLeave = () => {
 
 const activeChar = computed(() => characters.value[activeIndex.value]);
 
-const selectChar = (idx) => {
+const selectChar = (idx, event) => {
   if (idx === activeIndex.value) return;
+  
+  // Only apply zoom animation on desktop (prevents layout shift on mobile)
+  const isMobile = window.innerWidth < 768;
+  
+  if (!isMobile) {
+    // Zoom out all thumbs first
+    gsap.to('.thumb-icon', {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.out"
+    });
+    
+    // Zoom in the clicked thumb
+    if (event && event.currentTarget) {
+      gsap.to(event.currentTarget, {
+        scale: 1.15,
+        duration: 0.25,
+        ease: "power2.out"
+      });
+    }
+  }
   
   // Main character fade out
   gsap.to(mainImgRef.value, {
@@ -221,13 +242,9 @@ const selectChar = (idx) => {
   // Expression fade out and in
   gsap.to(expressionRef.value, {
     opacity: 0,
-    scale: 0.9,
     duration: 0.2,
     onComplete: () => {
-      gsap.fromTo(expressionRef.value, 
-        { opacity: 0, scale: 0.9, y: 10 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.1 }
-      );
+      gsap.to(expressionRef.value, { opacity: 1, duration: 0.4, delay: 0.1 });
     }
   });
 
@@ -240,11 +257,18 @@ const selectChar = (idx) => {
     }
   });
 
-  // Info header STAMP animation (slower)
-  gsap.fromTo(infoHeaderRef.value, 
-    { opacity: 0, scale: 1.5, rotation: -5 },
-    { opacity: 1, scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.5)", delay: 0.2 }
-  );
+  // Info header STAMP animation - only on desktop to prevent layout shift
+  if (window.innerWidth >= 768) {
+    gsap.fromTo(infoHeaderRef.value, 
+      { opacity: 0, scale: 1.5, rotation: -5 },
+      { opacity: 1, scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.5)", delay: 0.2 }
+    );
+  } else {
+    gsap.fromTo(infoHeaderRef.value, 
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3, delay: 0.2 }
+    );
+  }
 };
 
 // Click zoom animation on character image
@@ -265,6 +289,10 @@ const onCharaClick = () => {
 onMounted(() => {
   // Set initial state
   gsap.set('.thumb-icon', { opacity: 0, y: -20 });
+  // Only apply initial zoom on desktop
+  if (window.innerWidth >= 768) {
+    gsap.set('.thumb-icon.active', { scale: 1.15 });
+  }
   gsap.set('.main-card', { opacity: 0, y: 50 });
   
   // Thumbnail animation with ScrollTrigger
@@ -312,9 +340,9 @@ onMounted(() => {
         :key="c.id"
         class="thumb-icon"
         :class="{ active: i === activeIndex }"
-        @click="selectChar(i)"
+        @click="selectChar(i, $event)"
       >
-        <img :src="c.thumb" :alt="c.name" />
+        <img :src="c.thumb" :alt="c.name" loading="lazy" />
       </div>
     </div>
 
@@ -327,12 +355,12 @@ onMounted(() => {
       <div class="card-visual">
         <!-- Left: Character Image -->
         <div class="card-chara" @click="onCharaClick">
-          <img ref="mainImgRef" :src="activeChar.main" :alt="activeChar.name" class="chara-img" />
+          <img ref="mainImgRef" :src="activeChar.main" :alt="activeChar.name" class="chara-img" loading="lazy" />
         </div>
 
         <!-- Right: Expression Images -->
         <div class="card-expressions" ref="expressionRef">
-          <img :src="activeChar.sub" class="expr-img" />
+          <img :src="activeChar.sub" class="expr-img" loading="lazy" />
         </div>
       </div>
 
@@ -456,7 +484,6 @@ onMounted(() => {
   overflow: hidden;
   cursor: pointer;
   border: 3px solid #e0d8e8;
-  transition: all 0.25s ease;
   background: white;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -469,7 +496,6 @@ onMounted(() => {
 }
 
 .thumb-icon:hover {
-  transform: scale(1.05);
   border-color: #c8b8d8;
 }
 
@@ -503,11 +529,11 @@ onMounted(() => {
 }
 
 .binding-left {
-  left: -25px;
+  left: -27px;
 }
 
 .binding-right {
-  right: -25px;
+  right: -27px;
 }
 
 /* Card Visual Container */
@@ -520,17 +546,17 @@ onMounted(() => {
 
 /* Character Image */
 .card-chara {
-  flex: 0 0 220px;
+  flex: 0 0 277px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  top : -100px;
+  top : -65px;
   cursor: pointer;
 }
 
 .chara-img {
-  max-height: 380px;
+  max-height: 479px;
   width: auto;
 }
 
@@ -541,11 +567,12 @@ onMounted(() => {
   gap: 10px;
   padding: 5px;
   margin-bottom: 30%;
+  margin-top: 35px;
   justify-content: center;
 }
 
 .expr-img {
-  width: 100px;
+  width: 126px;
   height: auto;
   border-radius: 12px;
   border: none;
@@ -800,7 +827,12 @@ onMounted(() => {
   .thumb-icon {
     width: 42px;
     height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    max-width: 42px;
+    max-height: 42px;
     border-width: 2px;
+    transform: scale(1) !important; /* Prevent zoom animation on mobile */
   }
 
   .main-card {

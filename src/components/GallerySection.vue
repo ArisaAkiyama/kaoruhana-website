@@ -77,7 +77,7 @@ onMounted(() => {
           class="gallery-item"
           @click="openLightbox(item)"
         >
-          <img :src="item.src" :alt="item.title" />
+          <img :src="item.src" :alt="item.title" loading="lazy" />
           <div class="item-overlay">
             <span class="item-title">{{ item.title }}</span>
           </div>

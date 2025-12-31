@@ -8,6 +8,21 @@ gsap.registerPlugin(ScrollTrigger);
 import kvImage from '../assets/kv_pc_1.jpg';
 import bgBase from '../assets/bg_base.jpg';
 
+// Import cached YouTube thumbnails
+import thumb1 from '../assets/thumbnails/ep_1_KEIlHZqYfSY.jpg';
+import thumb2 from '../assets/thumbnails/ep_2_5KTlvN61vb4.jpg';
+import thumb3 from '../assets/thumbnails/ep_3_Cxeq2IeiZWQ.jpg';
+import thumb4 from '../assets/thumbnails/ep_4_J1CPKlnILL4.jpg';
+import thumb5 from '../assets/thumbnails/ep_5_c_yNgIae6i4.jpg';
+import thumb6 from '../assets/thumbnails/ep_6_orxUSsDnaGQ.jpg';
+import thumb7 from '../assets/thumbnails/ep_7_2FNYqlwNRSg.jpg';
+import thumb8 from '../assets/thumbnails/ep_8_bWteiUJZcd4.jpg';
+import thumb9 from '../assets/thumbnails/ep_9_V82eVUbm_sM.jpg';
+import thumb10 from '../assets/thumbnails/ep_10_sejTGHHsYyY.jpg';
+import thumb11 from '../assets/thumbnails/ep_11_lh7R9Z2xSFY.jpg';
+import thumb12 from '../assets/thumbnails/ep_12_05Y_hhVntbE.jpg';
+import thumb13 from '../assets/thumbnails/ep_13_i5_w0CiLjnI.jpg';
+
 // Import episode images from id_1 folder
 import ep1_1 from '../assets/id_1/1.jpg';
 import ep1_2 from '../assets/id_1/2.jpg';
@@ -234,19 +249,19 @@ const activeEpisode = ref(0);
 const isPlaying = ref(false);
 
 const episodes = ref([
-  { id: 1, title: '第1話', subtitle: '凛太郎と薫子', images: ep1Images, videoId: 'KEIlHZqYfSY' },
-  { id: 2, title: '第2話', subtitle: '二人の距離', images: ep2Images, videoId: '5KTlvN61vb4' },
-  { id: 3, title: '第3話', subtitle: '想いの行方', images: ep3Images, videoId: 'Cxeq2IeiZWQ' },
-  { id: 4, title: '第4話', subtitle: '揺れる心', images: ep4Images, videoId: 'J1CPKlnILL4' },
-  { id: 5, title: '第5話', subtitle: '告白の時', images: ep5Images, videoId: 'c_yNgIae6i4' },
-  { id: 6, title: '第6話', subtitle: '新たな一歩', images: ep6Images, videoId: 'orxUSsDnaGQ' },
-  { id: 7, title: '第7話', subtitle: '二人の約束', images: ep7Images, videoId: '2FNYqlwNRSg' },
-  { id: 8, title: '第8話', subtitle: '未来へ', images: ep8Images, videoId: 'bWteiUJZcd4' },
-  { id: 9, title: '第9話', subtitle: '嵐の前の静けさ', images: ep9Images, videoId: 'V82eVUbm_sM' },
-  { id: 10, title: '第10話', subtitle: '運命の選択', images: ep10Images, videoId: 'sejTGHHsYyY' },
-  { id: 11, title: '第11話', subtitle: '再会の日', images: ep11Images, videoId: 'lh7R9Z2xSFY' },
-  { id: 12, title: '第12話', subtitle: '薫る花は凛と咲く', images: ep12Images, videoId: '05Y_hhVntbE' },
-  { id: 13, title: '第13話', subtitle: '新たなる始まり', images: ep13Images, videoId: 'i5_w0CiLjnI' },
+  { id: 1, title: '第1話', subtitle: '凛太郎と薫子', images: ep1Images, videoId: 'KEIlHZqYfSY', thumbnail: thumb1 },
+  { id: 2, title: '第2話', subtitle: '二人の距離', images: ep2Images, videoId: '5KTlvN61vb4', thumbnail: thumb2 },
+  { id: 3, title: '第3話', subtitle: '想いの行方', images: ep3Images, videoId: 'Cxeq2IeiZWQ', thumbnail: thumb3 },
+  { id: 4, title: '第4話', subtitle: '揺れる心', images: ep4Images, videoId: 'J1CPKlnILL4', thumbnail: thumb4 },
+  { id: 5, title: '第5話', subtitle: '告白の時', images: ep5Images, videoId: 'c_yNgIae6i4', thumbnail: thumb5 },
+  { id: 6, title: '第6話', subtitle: '新たな一歩', images: ep6Images, videoId: 'orxUSsDnaGQ', thumbnail: thumb6 },
+  { id: 7, title: '第7話', subtitle: '二人の約束', images: ep7Images, videoId: '2FNYqlwNRSg', thumbnail: thumb7 },
+  { id: 8, title: '第8話', subtitle: '未来へ', images: ep8Images, videoId: 'bWteiUJZcd4', thumbnail: thumb8 },
+  { id: 9, title: '第9話', subtitle: '嵐の前の静けさ', images: ep9Images, videoId: 'V82eVUbm_sM', thumbnail: thumb9 },
+  { id: 10, title: '第10話', subtitle: '運命の選択', images: ep10Images, videoId: 'sejTGHHsYyY', thumbnail: thumb10 },
+  { id: 11, title: '第11話', subtitle: '再会の日', images: ep11Images, videoId: 'lh7R9Z2xSFY', thumbnail: thumb11 },
+  { id: 12, title: '第12話', subtitle: '薫る花は凛と咲く', images: ep12Images, videoId: '05Y_hhVntbE', thumbnail: thumb12 },
+  { id: 13, title: '第13話', subtitle: '新たなる始まり', images: ep13Images, videoId: 'i5_w0CiLjnI', thumbnail: thumb13 },
 ]);
 
 // Get current episode filmstrip images (duplicated for seamless loop)
@@ -255,6 +270,17 @@ const currentFilmstripImages = computed(() => {
   // Duplicate images for seamless infinite scroll
   return [...images, ...images];
 });
+
+// Track loaded state for each image
+const imageLoadedStates = ref({});
+
+const onImageLoad = (idx) => {
+  imageLoadedStates.value[idx] = true;
+};
+
+const isImageLoaded = (idx) => {
+  return imageLoadedStates.value[idx] === true;
+};
 
 const staff = ref([
   { role: '原作', name: '三香見サカ (講談社「マガジンポケット」連載)' },
@@ -273,6 +299,8 @@ const synopsis = `男子校に通う高校生・紬 凛太郎は、祖父母が�
 const selectEpisode = (idx) => {
   activeEpisode.value = idx;
   isPlaying.value = false;
+  // Reset image loaded states when changing episode
+  imageLoadedStates.value = {};
 };
 
 const playVideo = () => {
@@ -324,7 +352,18 @@ const playVideo = () => {
           :key="idx" 
           class="filmstrip-item"
         >
-          <img :src="img" :alt="`Episode ${activeEpisode + 1} - ${idx + 1}`" />
+          <!-- Skeleton placeholder -->
+          <div v-if="!isImageLoaded(idx)" class="skeleton-wrapper">
+            <div class="skeleton"></div>
+          </div>
+          <!-- Actual image -->
+          <img 
+            :src="img" 
+            :alt="`Episode ${activeEpisode + 1} - ${idx + 1}`"
+            :class="{ 'image-loaded': isImageLoaded(idx) }"
+            loading="lazy"
+            @load="onImageLoad(idx)"
+          />
         </div>
       </div>
     </div>
@@ -365,8 +404,8 @@ const playVideo = () => {
             </template>
             <template v-else>
               <img 
-                v-if="episodes[activeEpisode].videoId"
-                :src="`https://img.youtube.com/vi/${episodes[activeEpisode].videoId}/maxresdefault.jpg`" 
+                v-if="episodes[activeEpisode].thumbnail"
+                :src="episodes[activeEpisode].thumbnail" 
                 alt="Episode Preview" 
                 class="preview-image" 
               />
@@ -526,23 +565,20 @@ const playVideo = () => {
   
 }
 
-.filmstrip-item {
-  flex-shrink: 0;
-  width: 560px;
-  height: 360px;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
 .filmstrip-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.9);
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transition: filter 0.3s ease, transform 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
 }
 
-.filmstrip-item:hover img {
+.filmstrip-item img.image-loaded {
+  opacity: 1;
+}
+
+.filmstrip-item:hover img.image-loaded {
   filter: brightness(1);
   transform: scale(1.05);
 }
@@ -550,6 +586,48 @@ const playVideo = () => {
 @keyframes scrollFilmstrip {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* Skeleton Loading */
+.skeleton-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #e8e0f0 0%,
+    #f5f0fa 50%,
+    #e8e0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.filmstrip-item {
+  flex-shrink: 0;
+  width: 560px;
+  height: 360px;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
 }
 
 /* Story Content */
