@@ -16,6 +16,9 @@ Anime promotional website for "The Fragrant Flower Blooms with Dignity" (薫る�
 ### News Section
 ![News](screenshots/news.png)
 
+### Story Section
+![Story](screenshots/story.png)
+
 ### Gallery Section
 ![Gallery](screenshots/gallery.png)
 
